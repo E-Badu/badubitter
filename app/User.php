@@ -16,15 +16,16 @@ class User extends Authenticatable
     ];
 
     /**
-     * The attributes that should be hidden for arrays.
+     * The attributes excluded from the model's JSON form.
      *
      * @var array
      */
     protected $hidden = [
         'password', 'remember_token',
     ];
-/**
-     * Get the posts of the user.
+
+    /**
+     * Get the posts for this user.
      */
     public function posts()
     {
@@ -32,10 +33,10 @@ class User extends Authenticatable
     }
 
         /**
-     * Get the likes of user.
+     * Get the users who like this user's posts.
      */
     public function userPosts()
     {
-        return $this->belongsToMany('App\Post');
+        return $this->belongsToMany('App\Post')->withTimestamps();
     }
 }
